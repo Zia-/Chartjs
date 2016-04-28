@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Pie Chart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="canvas-holder" style="width:50%">
+        <canvas id="chart-area" width="300" height="300" />
+    </div>
+    <!-- <button id="randomizeData">Randomize Data</button>
+    <button id="addDataset">Add Dataset</button>
+    <button id="removeDataset">Remove Dataset</button> -->
+    <script>
+    var randomScalingFactor = function() {
+        return Math.round(Math.random() * 100);
+    };
+    var randomColorFactor = function() {
+        return Math.round(Math.random() * 255);
+    };
+    var randomColor = function(opacity) {
+        return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',' + (opacity || '.3') + ')';
+    };
+
+    var datacolor = ["#F7464A","#46BFBD","#FDB45C","#949FB1","#4D5360","#50614E","#61544E","#4E4F61","#000ABF","#A8A8A8","#42844C","#844242",];
+
+    var datalabel = ["Istanbul","West Marmara","Aegean","East Marmara","West Anatolia","Mediterranean","Central Anatolia","West Black Sea","East Black Sea","North East Anatolia","Central East Anatolia","South East Anatolia",];
+
+    var dataarray2007 = [12.573836,3.052555,9.299322,6.417153,6.651887,8.906427,3.776927,4.477457,2.488652,2.212759,3.558432,7.170849,];
+    var dataarray2008 = [12.697164,3.107425,9.384848,6.579426,6.748952,9.050691,3.792508,4.478029,2.507387,2.201862,3.618056,7.350752,];
+    var dataarray2009 = [12.915158,3.129772,9.517153,6.701343,6.875349,9.252902,3.831373,4.512288,2.526619,2.198061,3.638401,7.462893,];
+    var dataarray2010 = [13.255685,3.164048,9.693594,6.841607,7.018194,9.423231,3.849267,4.518786,2.516167,2.202106,3.647531,7.592772,];
+    var dataarray2011 = [13.624240,3.210147,9.687692,6.952685,7.163453,9.495788,3.843731,4.477107,2.513021,2.230394,3.709838,7.816173,];
+    var dataarray2012 = [13.854740,3.247669,9.779502,7.058367,7.253247,9.611007,3.853025,4.483603,2.545274,2.226155,3.756322,7.958473,];
+    var dataarray2013 = [14.160467,3.278705,9.897313,7.198284,7.362247,9.766093,3.873470,4.499102,2.553647,2.553647,3.774582,8.096352,];
+    var dataarray2014 = [14.377018,3.351582,10.023549,7.332137,7.499242,9.906771,3.886251,4.493559,2.566840,2.206326,3.801911,8.250718,];
+    var dataarray2015 = [14.657434,3.387449,10.138132,7.499352,7.643315,10.039939,3.894341,4.502525,2.572850,2.195359,3.824817,8.385540,];
+
+
+    var populationdata = {
+        type: 'pie',
+        data: {
+            datasets: [
+            {
+                label: "2015",
+                data: dataarray2015,
+                backgroundColor: datacolor,
+            },
+            {
+                label: "2014",
+                data: dataarray2014,
+                backgroundColor: datacolor,
+            },
+            {
+                label: "2013",
+                data: dataarray2013,
+                backgroundColor: datacolor,
+            },
+            {
+                label: "2012",
+                data: dataarray2012,
+                backgroundColor: datacolor,
+            },
+            {
+                label: "2011",
+                data: dataarray2011,
+                backgroundColor: datacolor,
+            },
+            {
+                label: "2010",
+                data: dataarray2010,
+                backgroundColor: datacolor,
+            },
+            {
+                label: "2009",
+                data: dataarray2009,
+                backgroundColor: datacolor,
+            },
+            {
+                label: "2008",
+                data: dataarray2008,
+                backgroundColor: datacolor,
+            },
+            {
+                label: "2007",
+                data: dataarray2007,
+                backgroundColor: datacolor,
+            },
+            ],
+            labels: datalabel
+        },
+        options: {
+            responsive: true,
+            title:{
+                display:true,
+                text:'Population in million per Year per Province Line Chart'
+            },
+        }
+    };
+
+    var ctx = document.getElementById('chart-area').getContext('2d');
+    new Chart(ctx,populationdata);
+
+    // window.onload = function() {
+    //     var ctx = document.getElementById("chart-area").getContext("2d");
+    //     window.myPie = new Chart(ctx, config);
+    // };
+    // $('#randomizeData').click(function() {
+    //     $.each(config.data.datasets, function(i, piece) {
+    //         $.each(piece.data, function(j, value) {
+    //             config.data.datasets[i].data[j] = randomScalingFactor();
+    //             //config.data.datasets.backgroundColor[i] = 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',.7)';
+    //         });
+    //     });
+    //     window.myPie.update();
+    // });
+    // $('#addDataset').click(function() {
+    //     var newDataset = {
+    //         backgroundColor: [randomColor(0.7), randomColor(0.7), randomColor(0.7), randomColor(0.7), randomColor(0.7)],
+    //         data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+    //     };
+    //     config.data.datasets.push(newDataset);
+    //     window.myPie.update();
+    // });
+    // $('#removeDataset').click(function() {
+    //     config.data.datasets.splice(0, 1);
+    //     window.myPie.update();
+    // });
+    </script>
+</body>
+
+</html>
